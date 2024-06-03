@@ -1,6 +1,7 @@
 name: domain
 description: "Domain layer for store app"
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: '>=3.4.1 <4.0.0'
