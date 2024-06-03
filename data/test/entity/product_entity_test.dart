@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'dart:convert';
 
 
-String successResponse = '''
+const String successResponse = '''
 {
     "id": 1,
     "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -17,7 +17,7 @@ String successResponse = '''
     }
 }
 ''';
-String successListResponse = '''
+const String successListResponse = '''
 [
     {
         "id": 1,
@@ -261,33 +261,42 @@ String successListResponse = '''
     }
 ]
 ''';
+const ProductEntity productEntity = ProductEntity(
+    id: 1,
+    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    price: 109.95,
+    description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    category: "men's clothing",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    rating: Rating(rate: 3.9, count: 120)
+);
 void main(){
+
   group("Json parsing test", (){
     test('Single object Json parsing', () {
       ProductEntity productEntity = ProductEntity.fromJson(
           jsonDecode(successResponse));
-      expect(productEntity.id, 1);
-      expect(productEntity.title, "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops");
-      expect(productEntity.price, 109.95);
-      expect(productEntity.description, "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday");
-      expect(productEntity.category, "men's clothing");
-      expect(productEntity.image, "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
-      expect(productEntity.rating.rate, 3.9);
-      expect(productEntity.rating.count, 120);
+      expect(productEntity, productEntity);
+
+    });
+    test("first element json parsing from list", (){
+      List<ProductEntity> productEntityList = (jsonDecode(successListResponse) as List).map((e) => ProductEntity.fromJson(e)).toList();
+      ProductEntity productEntity = productEntityList[0];
+      expect(productEntity, productEntity);
 
     });
   });
-  test("first element json parsing from list", (){
-    List<ProductEntity> productEntityList = (jsonDecode(successListResponse) as List).map((e) => ProductEntity.fromJson(e)).toList();
-    ProductEntity productEntity = productEntityList[0];
-    expect(productEntity.id, 1);
-    expect(productEntity.title, "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops");
-    expect(productEntity.price, 109.95);
-    expect(productEntity.description, "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday");
-    expect(productEntity.category,"men's clothing");
-    expect(productEntity.image, "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
-    expect(productEntity.rating.rate, 3.9);
-    expect(productEntity.rating.count, 120);
-
+  group("Model to entity transformation", (){
+    test("ProductEntity to ProductModel", (){
+      ProductEntity productEntity = ProductEntity.fromJson(jsonDecode(successResponse));
+      expect(productEntity.toModel().id, 1);
+      expect(productEntity.toModel().title, "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops");
+      expect(productEntity.toModel().price, 109.95);
+      expect(productEntity.toModel().description, "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday");
+      expect(productEntity.toModel().category,"men's clothing");
+      expect(productEntity.toModel().image, "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
+      expect(productEntity.toModel().rating.rate, 3.9);
+      expect(productEntity.toModel().rating.count, 120);
+    });
   });
 }
