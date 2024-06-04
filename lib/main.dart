@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_with_flutter/di/bloc_provider.dart';
 import 'package:store_with_flutter/di/repo_provider.dart';
 import 'package:store_with_flutter/di/usecase_provider.dart';
 import 'package:store_with_flutter/navigation_bloc.dart';
+import 'package:store_with_flutter/product_list_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +20,12 @@ class MyApp extends StatelessWidget {
         providers: repositoryProvider,
         child: MultiRepositoryProvider(
           providers: usecaseProviders,
-          child: BlocProvider(
-            create: (context) => NavigationBloc(),
-            child: const AppNavigator(),
+          child: MultiBlocProvider(
+            providers: blocProviders,
+            child: BlocProvider(
+              create: (context) => NavigationBloc(),
+              child: const AppNavigator(),
+            ),
           ),
         ),
       ),
@@ -69,6 +74,26 @@ class HomeScreen extends StatelessWidget {
                 context.read<NavigationBloc>().add(NavigateToSettings());
               },
               child: const Text('Go to Settings'),
+            ),
+            Expanded(child:
+              BlocBuilder<ProductListBloc, ProductListBlocState>(
+                builder: (context, state) {
+                  if (state is ProductListBlocLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is ProductListBlocLoaded) {
+                    return ListView.builder(
+                      itemCount: state.products.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(state.products[index].title),
+                          subtitle: Text(state.products[index].price.toString()),
+                        );
+                      },
+                    );
+                  }
+                  return Container();
+                },
+              ),
             ),
           ],
         ),
