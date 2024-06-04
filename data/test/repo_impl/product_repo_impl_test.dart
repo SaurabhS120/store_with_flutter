@@ -1,11 +1,10 @@
 import 'package:data/api_service.dart';
+import 'package:data/repo_impl/products_repo_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:data/repo_impl/products_repo_impl.dart';
 
-import '../api_service_test.mocks.dart';
-@GenerateNiceMocks([MockSpec<ProductsRepoImpl>()])
+@GenerateNiceMocks([MockSpec<ApiService>(),MockSpec<ProductsRepoImpl>()])
 import 'product_repo_impl_test.mocks.dart';
 
 void main(){

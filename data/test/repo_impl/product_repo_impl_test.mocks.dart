@@ -5,8 +5,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:data/repo_impl/products_repo_impl.dart' as _i2;
-import 'package:domain/model/product_model.dart' as _i4;
+import 'package:data/api_service.dart' as _i2;
+import 'package:data/entity/product_entity.dart' as _i4;
+import 'package:data/repo_impl/products_repo_impl.dart' as _i5;
+import 'package:domain/model/product_model.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -22,19 +24,36 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [ProductsRepoImpl].
+/// A class which mocks [ApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProductsRepoImpl extends _i1.Mock implements _i2.ProductsRepoImpl {
+class MockApiService extends _i1.Mock implements _i2.ApiService {
   @override
-  _i3.Future<List<_i4.ProductModel>> getProducts() => (super.noSuchMethod(
+  _i3.Future<List<_i4.ProductEntity>> getProducts() => (super.noSuchMethod(
         Invocation.method(
           #getProducts,
           [],
         ),
         returnValue:
-            _i3.Future<List<_i4.ProductModel>>.value(<_i4.ProductModel>[]),
+            _i3.Future<List<_i4.ProductEntity>>.value(<_i4.ProductEntity>[]),
         returnValueForMissingStub:
-            _i3.Future<List<_i4.ProductModel>>.value(<_i4.ProductModel>[]),
-      ) as _i3.Future<List<_i4.ProductModel>>);
+            _i3.Future<List<_i4.ProductEntity>>.value(<_i4.ProductEntity>[]),
+      ) as _i3.Future<List<_i4.ProductEntity>>);
+}
+
+/// A class which mocks [ProductsRepoImpl].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockProductsRepoImpl extends _i1.Mock implements _i5.ProductsRepoImpl {
+  @override
+  _i3.Future<List<_i6.ProductModel>> getProducts() => (super.noSuchMethod(
+        Invocation.method(
+          #getProducts,
+          [],
+        ),
+        returnValue:
+            _i3.Future<List<_i6.ProductModel>>.value(<_i6.ProductModel>[]),
+        returnValueForMissingStub:
+            _i3.Future<List<_i6.ProductModel>>.value(<_i6.ProductModel>[]),
+      ) as _i3.Future<List<_i6.ProductModel>>);
 }

@@ -1,8 +1,8 @@
 import 'package:domain/repo/products_repo.dart';
-import 'package:mockito/mockito.dart';
+import 'package:domain/usecase/get_products_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:domain/usecase/get_products_usecase.dart';
+import 'package:mockito/mockito.dart';
 
 @GenerateNiceMocks([MockSpec<ProductsRepo>(),MockSpec<GetProductsUsecase>()])
 import 'get_products_usecase_test.mocks.dart';

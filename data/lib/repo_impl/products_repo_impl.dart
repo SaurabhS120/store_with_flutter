@@ -2,6 +2,7 @@ import 'package:data/api_service.dart';
 import 'package:data/entity/product_entity.dart';
 import 'package:domain/model/product_model.dart';
 import 'package:domain/repo/products_repo.dart';
+
 class ProductsRepoImpl implements ProductsRepo {
 
   final ApiService _apiService;

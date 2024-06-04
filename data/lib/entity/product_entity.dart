@@ -1,6 +1,6 @@
 import 'package:domain/model/product_model.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_entity.freezed.dart';
 part 'product_entity.g.dart';
