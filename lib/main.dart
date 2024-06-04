@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_with_flutter/di/repo_provider.dart';
+import 'package:store_with_flutter/di/usecase_provider.dart';
 import 'package:store_with_flutter/navigation_bloc.dart';
 
 void main() {
@@ -12,9 +14,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider(
-        create: (context) => NavigationBloc(),
-        child: const AppNavigator(),
+      home: MultiRepositoryProvider(
+        providers: repositoryProvider,
+        child: MultiRepositoryProvider(
+          providers: usecaseProviders,
+          child: BlocProvider(
+            create: (context) => NavigationBloc(),
+            child: const AppNavigator(),
+          ),
+        ),
       ),
     );
   }
@@ -49,7 +57,6 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Home')),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
               onPressed: () {

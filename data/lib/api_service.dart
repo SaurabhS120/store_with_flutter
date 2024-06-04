@@ -1,14 +1,18 @@
 import 'package:data/entity/product_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 part 'api_service.g.dart';
 
-@RestApi()
+@RestApi(baseUrl: 'https://fakestoreapi.com')
 abstract class ApiService {
-  factory ApiService(Dio dio,{required baseUrl}){
-    return _ApiService(dio,baseUrl: baseUrl);
+  factory ApiService(Dio dio,){
+    return _ApiService(dio,);
   }
+  
+  factory ApiService.create() => ApiService(Dio()..interceptors.addAll([PrettyDioLogger()]));
+  
   @GET('/products')
   Future<List<ProductEntity>> getProducts();
 }

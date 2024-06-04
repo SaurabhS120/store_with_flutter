@@ -12,7 +12,9 @@ class _ApiService implements ApiService {
   _ApiService(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'https://fakestoreapi.com';
+  }
 
   final Dio _dio;
 
