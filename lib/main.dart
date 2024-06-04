@@ -4,7 +4,9 @@ import 'package:store_with_flutter/di/bloc_provider.dart';
 import 'package:store_with_flutter/di/repo_provider.dart';
 import 'package:store_with_flutter/di/usecase_provider.dart';
 import 'package:store_with_flutter/navigation_bloc.dart';
-import 'package:store_with_flutter/product_list_bloc.dart';
+import 'package:store_with_flutter/features/home/product_list_bloc.dart';
+import 'package:store_with_flutter/app_navigator.dart';
+import 'package:store_with_flutter/features/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,75 +29,6 @@ class MyApp extends StatelessWidget {
               child: const AppNavigator(),
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class AppNavigator extends StatelessWidget {
-  const AppNavigator({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<NavigationBloc, NavigationState>(
-      builder: (context, state) {
-        if (state is HomeScreenState) {
-          return const HomeScreen();
-        } else if (state is ProfileScreenState) {
-          return const ProfileScreen();
-        } else if (state is SettingsScreenState) {
-          return const SettingsScreen();
-        }
-        return Container();
-      },
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                context.read<NavigationBloc>().add(NavigateToProfile());
-              },
-              child: const Text('Go to Profile'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.read<NavigationBloc>().add(NavigateToSettings());
-              },
-              child: const Text('Go to Settings'),
-            ),
-            Expanded(child:
-              BlocBuilder<ProductListBloc, ProductListBlocState>(
-                builder: (context, state) {
-                  if (state is ProductListBlocLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is ProductListBlocLoaded) {
-                    return ListView.builder(
-                      itemCount: state.products.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(state.products[index].title),
-                          subtitle: Text(state.products[index].price.toString()),
-                        );
-                      },
-                    );
-                  }
-                  return Container();
-                },
-              ),
-            ),
-          ],
         ),
       ),
     );
