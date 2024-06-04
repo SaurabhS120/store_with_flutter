@@ -13,36 +13,24 @@ jobs:
         with:
           flutter-version: 3.19.5
 
-
-
-      name: Domain layer
-        path: domain
-        steps:
-          - name: Pub clean
-            run: flutter clean
-          - name: Pub Get
-            run: flutter pub get
-          - name: Build Runner build
-            run: dart run build_runner build --delete-conflicting-outputs
-
-      name: Data layer
-        path: domain
-        steps:
-          - name: Pub clean
-            run: flutter clean
-          - name: Pub Get
-            run: flutter pub get
-          - name: Build Runner build
-            run: dart run build_runner build --delete-conflicting-outputs
-
-      name: Presentation layer
-        path: domain
-        steps:
-          - name: Pub clean
-            run: flutter clean
-          - name: Pub Get
-            run: flutter pub get
-
+      - name: Domain layer preparation
+        run: |
+          cd domain
+          flutter clean
+          flutter pub get
+          dart run build_runner build --delete-conflicting-outputs
+      
+      - name: Data layer preparation
+        run: |
+          cd data
+          flutter clean
+          flutter pub get
+          dart run build_runner build --delete-conflicting-outputs
+      
+      - name: Presentation layer preparation
+        run: |
+          flutter clean
+          flutter pub get
 
       - name: Build apk
         run: flutter build apk --release
