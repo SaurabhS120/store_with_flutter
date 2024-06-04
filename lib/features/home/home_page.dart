@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           );
-                        }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 4, mainAxisSpacing: 4),
+                        }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 4, mainAxisSpacing: 4),
                       ),
                     ),
                   );
