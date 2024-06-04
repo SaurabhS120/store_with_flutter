@@ -8,8 +8,8 @@ abstract class NavigationEvent extends Equatable {
 }
 
 class NavigateToHome extends NavigationEvent {}
+class NavigateToCart extends NavigationEvent {}
 class NavigateToProfile extends NavigationEvent {}
-class NavigateToSettings extends NavigationEvent {}
 
 // navigation_state.dart
 abstract class NavigationState extends Equatable {
@@ -18,20 +18,18 @@ abstract class NavigationState extends Equatable {
 }
 
 class HomeScreenState extends NavigationState {}
+class CartScreenState extends NavigationState {}
 class ProfileScreenState extends NavigationState {}
-class SettingsScreenState extends NavigationState {}
-
-// navigation_bloc.dart
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   NavigationBloc() : super(HomeScreenState()) {
     on<NavigateToHome>((event, emit) {
       emit(HomeScreenState());
     });
+    on<NavigateToCart>((event, emit) {
+      emit(CartScreenState());
+    });
     on<NavigateToProfile>((event, emit) {
       emit(ProfileScreenState());
-    });
-    on<NavigateToSettings>((event, emit) {
-      emit(SettingsScreenState());
     });
   }
 }

@@ -40,32 +40,22 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Profile')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            context.read<NavigationBloc>().add(NavigateToHome());
-          },
-          child: const Text('Back to Home'),
-        ),
+      body: const Center(
+        child: Text('Profile Screen')
       ),
     );
   }
 }
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            context.read<NavigationBloc>().add(NavigateToHome());
-          },
-          child: const Text('Back to Home'),
-        ),
+      appBar: AppBar(title: const Text('Cart')),
+      body: const Center(
+        child: Text('Cart Screen'),
       ),
     );
   }

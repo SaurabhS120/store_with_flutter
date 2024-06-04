@@ -15,8 +15,8 @@ class AppNavigator extends StatelessWidget {
           return const HomePage();
         } else if (state is ProfileScreenState) {
           return const ProfileScreen();
-        } else if (state is SettingsScreenState) {
-          return const SettingsScreen();
+        } else if (state is CartScreenState) {
+          return const CartScreen();
         }
         return Container();
       },
