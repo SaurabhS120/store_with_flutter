@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_with_flutter/features/cart/cart_page.dart';
 import 'package:store_with_flutter/features/home/home_page_bottom_nav_bloc.dart';
 import 'package:store_with_flutter/features/home/product_list_page.dart';
 import 'package:store_with_flutter/main.dart';
@@ -41,7 +42,7 @@ class HomePage extends StatelessWidget {
     if (state is HomePageBottomNavProductListState) {
       return const ProductListPage();
     } else if (state is HomePageBottomNavCartState) {
-      return const Center(child: Text('Cart'));
+      return const CartScreen();
     } else if (state is HomePageBottomNavProfileState) {
       return const ProfileScreen();
     }

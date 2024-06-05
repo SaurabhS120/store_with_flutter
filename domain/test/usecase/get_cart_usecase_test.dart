@@ -19,9 +19,17 @@ void main(){
   });
 
   test('getCart', () async {
-    when(usecase.getCart(GetCartUsecaseParam(1))).thenAnswer((_) async => []);
-    final result = await usecase.getCart(GetCartUsecaseParam(1));
-    expect(result, []);
+    when(usecase.execute(GetCartUsecaseParam(1))).thenAnswer((_) async => CartModel(
+        id: 1,
+        userId: 3,
+        date: DateTime(2020, 6, 3),
+        products: const [ProductCartModel(productId: 1, quantity: 3)]));
+    final result = await usecase.execute(GetCartUsecaseParam(1));
+    expect(result, CartModel(
+        id: 1,
+        userId: 3,
+        date: DateTime(2020, 6, 3),
+        products: const [ProductCartModel(productId: 1, quantity: 3)]));
   });
 
   test('Get cart usecase test with dummy response', (){
@@ -34,8 +42,8 @@ void main(){
         ProductCartModel(productId: 11, quantity: 12),
       ],
     );
-    when(repo.getCart(1)).thenAnswer((_) async => [cartModel]);
-    expect(usecase.getCart(GetCartUsecaseParam(1)), completion([cartModel]));
+    when(repo.getCart(1)).thenAnswer((_) async => cartModel);
+    expect(usecase.execute(GetCartUsecaseParam(1)), completion(cartModel));
   });
 
 }

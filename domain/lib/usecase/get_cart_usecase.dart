@@ -7,7 +7,7 @@ class GetCartUseCase {
 
   GetCartUseCase(this._cartRepo);
 
-  Future<List<CartModel>> getCart(GetCartUsecaseParam params) async {
+  Future<CartModel> execute(GetCartUsecaseParam params) async {
     return await _cartRepo.getCart(params.userId);
   }
 }

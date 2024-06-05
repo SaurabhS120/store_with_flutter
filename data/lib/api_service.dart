@@ -17,6 +17,6 @@ abstract class ApiService {
   @GET('/products')
   Future<List<ProductEntity>> getProducts();
 
-  @GET('/cart/{userId}')
-  Future<List<CartEntity>> getCart(@Path('userId') int userId);
+  @GET('/carts/{userId}')
+  Future<CartEntity> getCart(@Path('userId') int userId);
 }

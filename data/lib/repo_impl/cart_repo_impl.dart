@@ -6,7 +6,7 @@ class CartRepoImpl implements CartRepo{
   final ApiService _apiService;
   CartRepoImpl(this._apiService);
   @override
-  Future<List<CartModel>> getCart(int userId) async{
-    return (await _apiService.getCart(userId)).map((e) => e.toModel()).toList();
+  Future<CartModel> getCart(int userId) async{
+    return (await _apiService.getCart(userId)).toModel();
   }
 }
