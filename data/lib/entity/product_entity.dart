@@ -14,7 +14,7 @@ class ProductEntity with _$ProductEntity {
     required String description,
     required String category,
     required String image,
-    required Rating rating,
+    required RatingEntity rating,
   }) = _ProductEntity;
 
   factory ProductEntity.fromJson(Map<String, dynamic> json) => _$ProductEntityFromJson(json);
@@ -36,15 +36,15 @@ extension ProductEntityTransformer on ProductEntity {
 }
 
 @freezed
-class Rating with _$Rating {
-  const factory Rating({
+class RatingEntity with _$RatingEntity {
+  const factory RatingEntity({
     required double rate,
     required int count,
-  }) = _Rating;
+  }) = _RatingEntity;
 
-  factory Rating.fromJson(Map<String, dynamic> json) => _$RatingFromJson(json);
+  factory RatingEntity.fromJson(Map<String, dynamic> json) => _$RatingEntityFromJson(json);
 }
-extension RatingTransformer on Rating {
+extension RatingTransformer on RatingEntity {
   RatingModel toModel() {
     return RatingModel(
       rate: rate,

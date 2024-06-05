@@ -14,7 +14,7 @@ _$ProductEntityImpl _$$ProductEntityImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       category: json['category'] as String,
       image: json['image'] as String,
-      rating: Rating.fromJson(json['rating'] as Map<String, dynamic>),
+      rating: RatingEntity.fromJson(json['rating'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProductEntityImplToJson(_$ProductEntityImpl instance) =>
@@ -28,12 +28,13 @@ Map<String, dynamic> _$$ProductEntityImplToJson(_$ProductEntityImpl instance) =>
       'rating': instance.rating,
     };
 
-_$RatingImpl _$$RatingImplFromJson(Map<String, dynamic> json) => _$RatingImpl(
+_$RatingEntityImpl _$$RatingEntityImplFromJson(Map<String, dynamic> json) =>
+    _$RatingEntityImpl(
       rate: (json['rate'] as num).toDouble(),
       count: (json['count'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$RatingImplToJson(_$RatingImpl instance) =>
+Map<String, dynamic> _$$RatingEntityImplToJson(_$RatingEntityImpl instance) =>
     <String, dynamic>{
       'rate': instance.rate,
       'count': instance.count,

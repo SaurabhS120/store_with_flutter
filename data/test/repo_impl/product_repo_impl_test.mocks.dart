@@ -3,13 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i6;
 
-import 'package:data/api_service.dart' as _i3;
-import 'package:data/entity/cart_entity.dart' as _i2;
-import 'package:data/entity/product_entity.dart' as _i5;
-import 'package:data/repo_impl/products_repo_impl.dart' as _i6;
-import 'package:domain/model/product_model.dart' as _i7;
+import 'package:data/api_service.dart' as _i5;
+import 'package:data/entity/cart_entity.dart' as _i3;
+import 'package:data/entity/product_entity.dart' as _i2;
+import 'package:data/repo_impl/products_repo_impl.dart' as _i7;
+import 'package:domain/model/product_model.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -25,8 +25,28 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeCartEntity_0 extends _i1.SmartFake implements _i2.CartEntity {
-  _FakeCartEntity_0(
+class _FakeProductEntity_0 extends _i1.SmartFake implements _i2.ProductEntity {
+  _FakeProductEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeCartEntity_1 extends _i1.SmartFake implements _i3.CartEntity {
+  _FakeCartEntity_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeProductModel_2 extends _i1.SmartFake implements _i4.ProductModel {
+  _FakeProductModel_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -38,26 +58,49 @@ class _FakeCartEntity_0 extends _i1.SmartFake implements _i2.CartEntity {
 /// A class which mocks [ApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockApiService extends _i1.Mock implements _i3.ApiService {
+class MockApiService extends _i1.Mock implements _i5.ApiService {
   @override
-  _i4.Future<List<_i5.ProductEntity>> getProducts() => (super.noSuchMethod(
+  _i6.Future<List<_i2.ProductEntity>> getProducts() => (super.noSuchMethod(
         Invocation.method(
           #getProducts,
           [],
         ),
         returnValue:
-            _i4.Future<List<_i5.ProductEntity>>.value(<_i5.ProductEntity>[]),
+            _i6.Future<List<_i2.ProductEntity>>.value(<_i2.ProductEntity>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i5.ProductEntity>>.value(<_i5.ProductEntity>[]),
-      ) as _i4.Future<List<_i5.ProductEntity>>);
+            _i6.Future<List<_i2.ProductEntity>>.value(<_i2.ProductEntity>[]),
+      ) as _i6.Future<List<_i2.ProductEntity>>);
 
   @override
-  _i4.Future<_i2.CartEntity> getCart(int? userId) => (super.noSuchMethod(
+  _i6.Future<_i2.ProductEntity> getProductsById(int? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getProductsById,
+          [id],
+        ),
+        returnValue: _i6.Future<_i2.ProductEntity>.value(_FakeProductEntity_0(
+          this,
+          Invocation.method(
+            #getProductsById,
+            [id],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i2.ProductEntity>.value(_FakeProductEntity_0(
+          this,
+          Invocation.method(
+            #getProductsById,
+            [id],
+          ),
+        )),
+      ) as _i6.Future<_i2.ProductEntity>);
+
+  @override
+  _i6.Future<_i3.CartEntity> getCart(int? userId) => (super.noSuchMethod(
         Invocation.method(
           #getCart,
           [userId],
         ),
-        returnValue: _i4.Future<_i2.CartEntity>.value(_FakeCartEntity_0(
+        returnValue: _i6.Future<_i3.CartEntity>.value(_FakeCartEntity_1(
           this,
           Invocation.method(
             #getCart,
@@ -65,29 +108,52 @@ class MockApiService extends _i1.Mock implements _i3.ApiService {
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<_i2.CartEntity>.value(_FakeCartEntity_0(
+            _i6.Future<_i3.CartEntity>.value(_FakeCartEntity_1(
           this,
           Invocation.method(
             #getCart,
             [userId],
           ),
         )),
-      ) as _i4.Future<_i2.CartEntity>);
+      ) as _i6.Future<_i3.CartEntity>);
 }
 
 /// A class which mocks [ProductsRepoImpl].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProductsRepoImpl extends _i1.Mock implements _i6.ProductsRepoImpl {
+class MockProductsRepoImpl extends _i1.Mock implements _i7.ProductsRepoImpl {
   @override
-  _i4.Future<List<_i7.ProductModel>> getProducts() => (super.noSuchMethod(
+  _i6.Future<List<_i4.ProductModel>> getProducts() => (super.noSuchMethod(
         Invocation.method(
           #getProducts,
           [],
         ),
         returnValue:
-            _i4.Future<List<_i7.ProductModel>>.value(<_i7.ProductModel>[]),
+            _i6.Future<List<_i4.ProductModel>>.value(<_i4.ProductModel>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i7.ProductModel>>.value(<_i7.ProductModel>[]),
-      ) as _i4.Future<List<_i7.ProductModel>>);
+            _i6.Future<List<_i4.ProductModel>>.value(<_i4.ProductModel>[]),
+      ) as _i6.Future<List<_i4.ProductModel>>);
+
+  @override
+  _i6.Future<_i4.ProductModel> getProductsById(int? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getProductsById,
+          [id],
+        ),
+        returnValue: _i6.Future<_i4.ProductModel>.value(_FakeProductModel_2(
+          this,
+          Invocation.method(
+            #getProductsById,
+            [id],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i4.ProductModel>.value(_FakeProductModel_2(
+          this,
+          Invocation.method(
+            #getProductsById,
+            [id],
+          ),
+        )),
+      ) as _i6.Future<_i4.ProductModel>);
 }

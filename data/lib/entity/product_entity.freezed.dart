@@ -26,7 +26,7 @@ mixin _$ProductEntity {
   String get description => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  Rating get rating => throw _privateConstructorUsedError;
+  RatingEntity get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,9 +47,9 @@ abstract class $ProductEntityCopyWith<$Res> {
       String description,
       String category,
       String image,
-      Rating rating});
+      RatingEntity rating});
 
-  $RatingCopyWith<$Res> get rating;
+  $RatingEntityCopyWith<$Res> get rating;
 }
 
 /// @nodoc
@@ -101,14 +101,14 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as Rating,
+              as RatingEntity,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RatingCopyWith<$Res> get rating {
-    return $RatingCopyWith<$Res>(_value.rating, (value) {
+  $RatingEntityCopyWith<$Res> get rating {
+    return $RatingEntityCopyWith<$Res>(_value.rating, (value) {
       return _then(_value.copyWith(rating: value) as $Val);
     });
   }
@@ -129,10 +129,10 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
       String description,
       String category,
       String image,
-      Rating rating});
+      RatingEntity rating});
 
   @override
-  $RatingCopyWith<$Res> get rating;
+  $RatingEntityCopyWith<$Res> get rating;
 }
 
 /// @nodoc
@@ -182,7 +182,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as Rating,
+              as RatingEntity,
     ));
   }
 }
@@ -217,7 +217,7 @@ class _$ProductEntityImpl
   @override
   final String image;
   @override
-  final Rating rating;
+  final RatingEntity rating;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -281,7 +281,7 @@ abstract class _ProductEntity implements ProductEntity {
       required final String description,
       required final String category,
       required final String image,
-      required final Rating rating}) = _$ProductEntityImpl;
+      required final RatingEntity rating}) = _$ProductEntityImpl;
 
   factory _ProductEntity.fromJson(Map<String, dynamic> json) =
       _$ProductEntityImpl.fromJson;
@@ -299,39 +299,41 @@ abstract class _ProductEntity implements ProductEntity {
   @override
   String get image;
   @override
-  Rating get rating;
+  RatingEntity get rating;
   @override
   @JsonKey(ignore: true)
   _$$ProductEntityImplCopyWith<_$ProductEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Rating _$RatingFromJson(Map<String, dynamic> json) {
-  return _Rating.fromJson(json);
+RatingEntity _$RatingEntityFromJson(Map<String, dynamic> json) {
+  return _RatingEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Rating {
+mixin _$RatingEntity {
   double get rate => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RatingCopyWith<Rating> get copyWith => throw _privateConstructorUsedError;
+  $RatingEntityCopyWith<RatingEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RatingCopyWith<$Res> {
-  factory $RatingCopyWith(Rating value, $Res Function(Rating) then) =
-      _$RatingCopyWithImpl<$Res, Rating>;
+abstract class $RatingEntityCopyWith<$Res> {
+  factory $RatingEntityCopyWith(
+          RatingEntity value, $Res Function(RatingEntity) then) =
+      _$RatingEntityCopyWithImpl<$Res, RatingEntity>;
   @useResult
   $Res call({double rate, int count});
 }
 
 /// @nodoc
-class _$RatingCopyWithImpl<$Res, $Val extends Rating>
-    implements $RatingCopyWith<$Res> {
-  _$RatingCopyWithImpl(this._value, this._then);
+class _$RatingEntityCopyWithImpl<$Res, $Val extends RatingEntity>
+    implements $RatingEntityCopyWith<$Res> {
+  _$RatingEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -358,21 +360,22 @@ class _$RatingCopyWithImpl<$Res, $Val extends Rating>
 }
 
 /// @nodoc
-abstract class _$$RatingImplCopyWith<$Res> implements $RatingCopyWith<$Res> {
-  factory _$$RatingImplCopyWith(
-          _$RatingImpl value, $Res Function(_$RatingImpl) then) =
-      __$$RatingImplCopyWithImpl<$Res>;
+abstract class _$$RatingEntityImplCopyWith<$Res>
+    implements $RatingEntityCopyWith<$Res> {
+  factory _$$RatingEntityImplCopyWith(
+          _$RatingEntityImpl value, $Res Function(_$RatingEntityImpl) then) =
+      __$$RatingEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double rate, int count});
 }
 
 /// @nodoc
-class __$$RatingImplCopyWithImpl<$Res>
-    extends _$RatingCopyWithImpl<$Res, _$RatingImpl>
-    implements _$$RatingImplCopyWith<$Res> {
-  __$$RatingImplCopyWithImpl(
-      _$RatingImpl _value, $Res Function(_$RatingImpl) _then)
+class __$$RatingEntityImplCopyWithImpl<$Res>
+    extends _$RatingEntityCopyWithImpl<$Res, _$RatingEntityImpl>
+    implements _$$RatingEntityImplCopyWith<$Res> {
+  __$$RatingEntityImplCopyWithImpl(
+      _$RatingEntityImpl _value, $Res Function(_$RatingEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -381,7 +384,7 @@ class __$$RatingImplCopyWithImpl<$Res>
     Object? rate = null,
     Object? count = null,
   }) {
-    return _then(_$RatingImpl(
+    return _then(_$RatingEntityImpl(
       rate: null == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
@@ -396,11 +399,11 @@ class __$$RatingImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RatingImpl with DiagnosticableTreeMixin implements _Rating {
-  const _$RatingImpl({required this.rate, required this.count});
+class _$RatingEntityImpl with DiagnosticableTreeMixin implements _RatingEntity {
+  const _$RatingEntityImpl({required this.rate, required this.count});
 
-  factory _$RatingImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RatingImplFromJson(json);
+  factory _$RatingEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RatingEntityImplFromJson(json);
 
   @override
   final double rate;
@@ -409,14 +412,14 @@ class _$RatingImpl with DiagnosticableTreeMixin implements _Rating {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Rating(rate: $rate, count: $count)';
+    return 'RatingEntity(rate: $rate, count: $count)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Rating'))
+      ..add(DiagnosticsProperty('type', 'RatingEntity'))
       ..add(DiagnosticsProperty('rate', rate))
       ..add(DiagnosticsProperty('count', count));
   }
@@ -425,7 +428,7 @@ class _$RatingImpl with DiagnosticableTreeMixin implements _Rating {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RatingImpl &&
+            other is _$RatingEntityImpl &&
             (identical(other.rate, rate) || other.rate == rate) &&
             (identical(other.count, count) || other.count == count));
   }
@@ -437,22 +440,24 @@ class _$RatingImpl with DiagnosticableTreeMixin implements _Rating {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RatingImplCopyWith<_$RatingImpl> get copyWith =>
-      __$$RatingImplCopyWithImpl<_$RatingImpl>(this, _$identity);
+  _$$RatingEntityImplCopyWith<_$RatingEntityImpl> get copyWith =>
+      __$$RatingEntityImplCopyWithImpl<_$RatingEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RatingImplToJson(
+    return _$$RatingEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _Rating implements Rating {
-  const factory _Rating(
-      {required final double rate, required final int count}) = _$RatingImpl;
+abstract class _RatingEntity implements RatingEntity {
+  const factory _RatingEntity(
+      {required final double rate,
+      required final int count}) = _$RatingEntityImpl;
 
-  factory _Rating.fromJson(Map<String, dynamic> json) = _$RatingImpl.fromJson;
+  factory _RatingEntity.fromJson(Map<String, dynamic> json) =
+      _$RatingEntityImpl.fromJson;
 
   @override
   double get rate;
@@ -460,6 +465,6 @@ abstract class _Rating implements Rating {
   int get count;
   @override
   @JsonKey(ignore: true)
-  _$$RatingImplCopyWith<_$RatingImpl> get copyWith =>
+  _$$RatingEntityImplCopyWith<_$RatingEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -14,4 +14,10 @@ class ProductsRepoImpl implements ProductsRepo {
     final products = await _apiService.getProducts();
     return products.map((e) => e.toModel()).toList();
   }
+
+  @override
+  Future<ProductModel> getProductsById(int id) async {
+    final product = await _apiService.getProductsById(id);
+    return product.toModel();
+  }
 }
