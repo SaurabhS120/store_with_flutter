@@ -14,6 +14,10 @@ class CartModel extends Equatable{
     required this.products,
   });
 
+  static CartModel copy(CartModel cartModel){
+    return CartModel(id: cartModel.id, userId: cartModel.userId, date: cartModel.date, products: ProductCartModel.copy(cartModel.products));
+  }
+
   @override
   List<Object?> get props => [id, userId, date, products];
 }
@@ -28,4 +32,12 @@ class ProductCartModel extends Equatable{
 
   @override
   List<Object?> get props => [productId, quantity];
+
+  static List<ProductCartModel> copy(List<ProductCartModel> products){
+    List<ProductCartModel> newProducts = [];
+    for(ProductCartModel product in products){
+      newProducts.add(ProductCartModel(productId: product.productId, quantity: product.quantity));
+    }
+    return newProducts;
+  }
 }

@@ -3,10 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i6;
 
 import 'package:domain/model/cart_model.dart' as _i2;
-import 'package:domain/usecase/get_cart_usecase.dart' as _i3;
+import 'package:domain/model/product_model.dart' as _i4;
+import 'package:domain/repo/products_repo.dart' as _i3;
+import 'package:domain/usecase/get_cart_usecase.dart' as _i5;
+import 'package:domain/usecase/get_product_by_id_usecase.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -32,18 +35,38 @@ class _FakeCartModel_0 extends _i1.SmartFake implements _i2.CartModel {
         );
 }
 
+class _FakeProductsRepo_1 extends _i1.SmartFake implements _i3.ProductsRepo {
+  _FakeProductsRepo_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeProductModel_2 extends _i1.SmartFake implements _i4.ProductModel {
+  _FakeProductModel_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [GetCartUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCartUseCase extends _i1.Mock implements _i3.GetCartUseCase {
+class MockGetCartUseCase extends _i1.Mock implements _i5.GetCartUseCase {
   @override
-  _i4.Future<_i2.CartModel> execute(_i3.GetCartUsecaseParam? params) =>
+  _i6.Future<_i2.CartModel> execute(_i5.GetCartUsecaseParam? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [params],
         ),
-        returnValue: _i4.Future<_i2.CartModel>.value(_FakeCartModel_0(
+        returnValue: _i6.Future<_i2.CartModel>.value(_FakeCartModel_0(
           this,
           Invocation.method(
             #execute,
@@ -51,12 +74,56 @@ class MockGetCartUseCase extends _i1.Mock implements _i3.GetCartUseCase {
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<_i2.CartModel>.value(_FakeCartModel_0(
+            _i6.Future<_i2.CartModel>.value(_FakeCartModel_0(
           this,
           Invocation.method(
             #execute,
             [params],
           ),
         )),
-      ) as _i4.Future<_i2.CartModel>);
+      ) as _i6.Future<_i2.CartModel>);
+}
+
+/// A class which mocks [GetProductByIdUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetProductByIdUsecase extends _i1.Mock
+    implements _i7.GetProductByIdUsecase {
+  @override
+  _i3.ProductsRepo get productsRepository => (super.noSuchMethod(
+        Invocation.getter(#productsRepository),
+        returnValue: _FakeProductsRepo_1(
+          this,
+          Invocation.getter(#productsRepository),
+        ),
+        returnValueForMissingStub: _FakeProductsRepo_1(
+          this,
+          Invocation.getter(#productsRepository),
+        ),
+      ) as _i3.ProductsRepo);
+
+  @override
+  _i6.Future<_i4.ProductModel> execute(
+          _i7.GetProductsByIdUsecaseParams? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [params],
+        ),
+        returnValue: _i6.Future<_i4.ProductModel>.value(_FakeProductModel_2(
+          this,
+          Invocation.method(
+            #execute,
+            [params],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i4.ProductModel>.value(_FakeProductModel_2(
+          this,
+          Invocation.method(
+            #execute,
+            [params],
+          ),
+        )),
+      ) as _i6.Future<_i4.ProductModel>);
 }

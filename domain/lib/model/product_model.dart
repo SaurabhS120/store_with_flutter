@@ -18,6 +18,14 @@ class ProductModel extends Equatable {
       required this.image,
       required this.rating});
 
+  static List<ProductModel> copyList(List<ProductModel> products){
+    List<ProductModel> newProducts = [];
+    for(ProductModel product in products){
+      newProducts.add(ProductModel(id: product.id, title: product.title, price: product.price, description: product.description, category: product.category, image: product.image, rating: product.rating));
+    }
+    return newProducts;
+  }
+
   @override
   List<Object?> get props => [id, title, price, description, category, image, rating];
 }

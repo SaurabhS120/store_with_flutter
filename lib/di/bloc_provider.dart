@@ -1,4 +1,5 @@
 import 'package:domain/usecase/get_cart_usecase.dart';
+import 'package:domain/usecase/get_product_by_id_usecase.dart';
 import 'package:domain/usecase/get_products_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_with_flutter/features/cart/cart_bloc.dart';
@@ -12,6 +13,6 @@ final List<BlocProvider> blocProviders = [
     create: (context) => HomePageBottomNavBloc(),
   ),
   BlocProvider<CartBloc>(
-    create: (context) => CartBloc(RepositoryProvider.of<GetCartUseCase>(context)),
+    create: (context) => CartBloc(RepositoryProvider.of<GetCartUseCase>(context),RepositoryProvider.of<GetProductByIdUsecase>(context)),
   ),
 ];
