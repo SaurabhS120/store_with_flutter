@@ -42,9 +42,12 @@ class ProductListPage extends StatelessWidget{
                           color: Colors.white,
                           child: Column(
                             children: [
-                              Expanded(child: Image.network(state.products[index].image,fit: BoxFit.contain,)),
-                              Text(state.products[index].title),
-                              Text(state.products[index].price.toString()),
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.network(state.products[index].image,fit: BoxFit.contain,),
+                              )),
+                              Text(state.products[index].title,textAlign: TextAlign.center,),
+                              Text(state.products[index].price.toString(),textAlign: TextAlign.center,),
                             ],
                           ),
                         ),
