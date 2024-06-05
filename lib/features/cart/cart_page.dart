@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/model/cart_model.dart';
 import 'package:domain/model/product_model.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,11 @@ class CartScreen extends StatelessWidget {
                 return Row(
                   children: [
                     if(product!=null) Padding(padding: const EdgeInsets.all(8),
-                    child: Image.network(product.image,width: 100,)),
+                    child: CachedNetworkImage(
+                      imageUrl:product.image,width: 100,
+                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                    )),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

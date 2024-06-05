@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_with_flutter/features/home/product_list_bloc.dart';
@@ -33,7 +34,11 @@ class ProductListPage extends StatelessWidget{
                           children: [
                             Expanded(child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.network(state.products[index].image,fit: BoxFit.contain,),
+                              child: CachedNetworkImage(
+                                imageUrl:state.products[index].image,fit: BoxFit.contain,
+                                placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                              ),
                             )),
                             Text(state.products[index].title,textAlign: TextAlign.center,),
                             Text(state.products[index].price.toString(),textAlign: TextAlign.center,),
