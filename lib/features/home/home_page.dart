@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<HomePageBottomNavBloc, HomePageBottomNavState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: const Text('Home')),
           body:_showPage(state),
           bottomNavigationBar: BottomNavigationBar(
           currentIndex: state.index,
