@@ -61,56 +61,31 @@ void main() {
   });
   group("Dependency test with bloc", (){
     GlobalKey testWidgetKey = GlobalKey();
+    final Widget widget = MultiRepositoryProvider(
+      providers: repositoryProvider,
+      child: MultiBlocProvider(
+        providers: blocProviders,
+        child: MultiBlocProvider(
+          providers: usecaseProviders,
+          child: SizedBox(key: testWidgetKey,
+          ),
+        ),
+      ),
+    );
     testWidgets("ApiService", (WidgetTester tester) async {
-      await tester.pumpWidget(
-          MultiRepositoryProvider(
-            providers: repositoryProvider,
-            child: MultiBlocProvider(
-              providers: blocProviders,
-              child: MultiBlocProvider(
-                providers: usecaseProviders,
-                child: SizedBox(key: testWidgetKey,
-                ),
-              ),
-            ),
-          )
-      );
+      await tester.pumpWidget(widget);
       expect(find.byKey(testWidgetKey), findsOneWidget);
       BuildContext context = tester.element(find.byKey(testWidgetKey));
       expect(RepositoryProvider.of<ApiService>(context), isNotNull );
     });
     testWidgets("Cart repo", (WidgetTester tester) async {
-      await tester.pumpWidget(
-          MultiRepositoryProvider(
-            providers: repositoryProvider,
-            child: MultiBlocProvider(
-              providers: blocProviders,
-              child: MultiBlocProvider(
-                providers: usecaseProviders,
-                child: SizedBox(key: testWidgetKey,
-                ),
-              ),
-            ),
-          )
-      );
+      await tester.pumpWidget(widget);
       expect(find.byKey(testWidgetKey), findsOneWidget);
       BuildContext context = tester.element(find.byKey(testWidgetKey));
       expect(RepositoryProvider.of<CartRepo>(context), isNotNull );
     });
     testWidgets("Cart Usecase", (WidgetTester tester) async {
-      await tester.pumpWidget(
-          MultiRepositoryProvider(
-            providers: repositoryProvider,
-            child: MultiBlocProvider(
-              providers: blocProviders,
-              child: MultiBlocProvider(
-                providers: usecaseProviders,
-                child: SizedBox(key: testWidgetKey,
-                ),
-              ),
-            ),
-          )
-      );
+      await tester.pumpWidget(widget);
       expect(find.byKey(testWidgetKey), findsOneWidget);
       BuildContext context = tester.element(find.byKey(testWidgetKey));
       expect(RepositoryProvider.of<GetCartUseCase>(context), isNotNull );
