@@ -1,3 +1,4 @@
+import 'package:domain/model/cart_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_entity.freezed.dart';
@@ -18,6 +19,16 @@ class CartEntity with _$CartEntity {
     return json.map((e) => CartEntity.fromJson(e)).toList();
   }
 }
+extension CartEntityTransformer on CartEntity {
+  CartModel toModel() {
+    return CartModel(
+      id: id,
+      userId: userId,
+      date: date,
+      products: products.map((e) => e.toModel()).toList(),
+    );
+  }
+}
 
 @freezed
 class ProductCartEntity with _$ProductCartEntity {
@@ -27,4 +38,12 @@ class ProductCartEntity with _$ProductCartEntity {
   }) = _ProductCartEntity;
 
   factory ProductCartEntity.fromJson(Map<String, dynamic> json) => _$ProductCartEntityFromJson(json);
+}
+extension ProductCartEntityTransformer on ProductCartEntity {
+  ProductCartModel toModel() {
+    return ProductCartModel(
+      productId: productId,
+      quantity: quantity,
+    );
+  }
 }

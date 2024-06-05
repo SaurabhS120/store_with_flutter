@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:data/entity/cart_entity.dart';
+import 'package:domain/model/cart_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const _successResponseList = '''
@@ -143,6 +144,18 @@ const _successResponse = '''
 ''';
 
 void main(){
+  group('ProductCartEntity', (){
+    test('fromJson', (){
+      final productCartEntity = ProductCartEntity.fromJson(json.decode('''
+      {
+        "productId": 1,
+        "quantity": 4
+      }
+      '''));
+      expect(productCartEntity.productId, 1);
+      expect(productCartEntity.quantity, 4);
+    });
+  });
   group('CartEntity', (){
     test('fromJson', (){
       final cartEntity = CartEntity.fromJson(json.decode(_successResponse));
@@ -170,6 +183,36 @@ void main(){
       expect(cartEntityList[0].products[1].quantity, 1);
       expect(cartEntityList[0].products[2].productId, 3);
       expect(cartEntityList[0].products[2].quantity, 6);
+    });
+  });
+  group("CartEntity transform test", (){
+    test("ProductCartEntity Transform test", (){
+      const ProductCartModel productCartModel = ProductCartModel(productId: 1, quantity: 4);
+      const productCartEntity = ProductCartEntity(productId: 1, quantity: 4);
+      expect(productCartEntity.toModel(), productCartModel);
+    });
+    test("CartEntity Transform test",(){
+      final CartModel cartModel = CartModel(
+        id: 1,
+        userId: 1,
+        date: DateTime.parse("2020-03-02T00:00:00.000Z"),
+        products: const [
+          ProductCartModel(productId: 1, quantity: 4),
+          ProductCartModel(productId: 2, quantity: 1),
+          ProductCartModel(productId: 3, quantity: 6),
+        ]
+      );
+      final cartEntity = CartEntity(
+        id: 1,
+        userId: 1,
+        date: DateTime.parse("2020-03-02T00:00:00.000Z"),
+        products: const [
+          ProductCartEntity(productId: 1, quantity: 4),
+          ProductCartEntity(productId: 2, quantity: 1),
+          ProductCartEntity(productId: 3, quantity: 6),
+        ]
+      );
+      expect(cartEntity.toModel(), cartModel);
     });
   });
 }
