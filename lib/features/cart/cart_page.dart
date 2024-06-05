@@ -17,8 +17,8 @@ class CartScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final cartItem = state.cartItems.products[index];
               return ListTile(
-                title: Text(cartItem.productId.toString()),
-                subtitle: Text(cartItem.quantity.toString()),
+                title: Text("productId : ${cartItem.productId.toString()}"),
+                subtitle: Text("quantity : ${cartItem.quantity.toString()}"),
               );
             },
           );
