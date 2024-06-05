@@ -29,24 +29,6 @@ void main() {
         products: const [ProductCartModel(productId: 1, quantity: 3)]));
     bloc = CartBloc(getCartUseCase);
   });
-  test("CartBlocLoading equatable test", () {
-    final CartBlocLoading loading = CartBlocLoading();
-    expect(loading, CartBlocLoading());
-  });
-  test("CartBlocLoaded equatable test", () {
-    final CartBlocLoaded loaded = CartBlocLoaded(CartModel(
-        id: 4,
-        userId: 2,
-        date: DateTime(2020, 6, 3),
-        products: const [ProductCartModel(productId: 1, quantity: 3)]));
-    expect(
-        loaded,
-        CartBlocLoaded(CartModel(
-            id: 4,
-            userId: 2,
-            date: DateTime(2020, 6, 3),
-            products: const [ProductCartModel(productId: 1, quantity: 3)])));
-  });
 
   group("Dependency test", (){
     test('ApiService',(){
@@ -91,6 +73,25 @@ void main() {
       expect(RepositoryProvider.of<GetCartUseCase>(context), isNotNull );
     });
   });
+  test("CartBlocLoading equatable test", () {
+    final CartBlocLoading loading = CartBlocLoading();
+    expect(loading, CartBlocLoading());
+  });
+  test("CartBlocLoaded equatable test", () {
+    final CartBlocLoaded loaded = CartBlocLoaded(CartModel(
+        id: 4,
+        userId: 2,
+        date: DateTime(2020, 6, 3),
+        products: const [ProductCartModel(productId: 1, quantity: 3)]));
+    expect(
+        loaded,
+        CartBlocLoaded(CartModel(
+            id: 4,
+            userId: 2,
+            date: DateTime(2020, 6, 3),
+            products: const [ProductCartModel(productId: 1, quantity: 3)])));
+  });
+
   blocTest<CartBloc, CartBlocState>(
       'emits [CartBlocLoading,CartBlocLoaded] when FetchCart is added',
       build: () => bloc,
