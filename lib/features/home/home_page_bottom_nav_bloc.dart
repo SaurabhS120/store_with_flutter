@@ -3,18 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePageBottomNavBloc  extends Bloc<HomePageBottomNavEvent, HomePageBottomNavState>{
 
-  HomePageBottomNavBloc() : super(HomePageBottomNavProductListState()){
+  HomePageBottomNavBloc() : super(const HomePageBottomNavProductListState()){
 
     on<HomePageBottomNavProductListEvent>((event, emit) {
-      emit(HomePageBottomNavProductListState());
+      emit(const HomePageBottomNavProductListState());
     });
 
     on<HomePageBottomNavCartEvent>((event, emit) {
-      emit(HomePageBottomNavCartState());
+      emit(const HomePageBottomNavCartState());
     });
 
     on<HomePageBottomNavProfileEvent>((event, emit) {
-      emit(HomePageBottomNavProfileState());
+      emit(const HomePageBottomNavProfileState());
     });
 
   }
@@ -59,23 +59,23 @@ class HomePageBottomNavProfileEvent extends HomePageBottomNavEvent {
 //--------------------- States ---------------------
 abstract class HomePageBottomNavState extends Equatable {
   final int index;
-  HomePageBottomNavState(this.index);
+  const HomePageBottomNavState(this.index);
 }
 //Possible State list
 class HomePageBottomNavProductListState extends HomePageBottomNavState {
-  HomePageBottomNavProductListState() : super(0);
+  const HomePageBottomNavProductListState() : super(0);
 
   @override
   List<Object> get props => [];
 }
 class HomePageBottomNavCartState extends HomePageBottomNavState {
-  HomePageBottomNavCartState():super(1);
+  const HomePageBottomNavCartState():super(1);
 
   @override
   List<Object> get props => [];
 }
 class HomePageBottomNavProfileState extends HomePageBottomNavState {
-  HomePageBottomNavProfileState():super(2);
+  const HomePageBottomNavProfileState():super(2);
 
   @override
   List<Object> get props => [];

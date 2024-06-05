@@ -524,10 +524,9 @@ packages:
   retrofit:
     dependency: transitive
     description:
-      name: retrofit
-      sha256: "13a2865c0d97da580ea4e3c64d412d81f365fd5b26be2a18fca9582e021da37a"
-      url: "https://pub.dev"
-    source: hosted
+      path: "data/retrofit/retrofit.dart/retrofit"
+      relative: true
+    source: path
     version: "4.1.0"
   shelf:
     dependency: transitive

@@ -1,3 +1,4 @@
+import 'package:data/entity/cart_entity.dart';
 import 'package:data/entity/product_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -15,4 +16,7 @@ abstract class ApiService {
   
   @GET('/products')
   Future<List<ProductEntity>> getProducts();
+
+  @GET('/cart/{userId}')
+  Future<List<CartEntity>> getCart(@Path('userId') int userId);
 }

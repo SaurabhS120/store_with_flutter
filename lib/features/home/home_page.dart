@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
 
   Widget _showPage(HomePageBottomNavState state) {
     if (state is HomePageBottomNavProductListState) {
-      return ProductListPage();
+      return const ProductListPage();
     } else if (state is HomePageBottomNavCartState) {
       return const Center(child: Text('Cart'));
     } else if (state is HomePageBottomNavProfileState) {

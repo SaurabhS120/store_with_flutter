@@ -5,6 +5,8 @@ import 'package:store_with_flutter/navigation_bloc.dart';
 
 
 class ProductListPage extends StatelessWidget{
+  const ProductListPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
