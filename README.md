@@ -22,7 +22,7 @@ samples, guidance on mobile development, and a full API reference.
 </p>
 
 ## Download app:
-Click on following link to download app from Microsoft App Center <br/>
+Click on the following link to download the app from Microsoft App Center <br/>
 https://install.appcenter.ms/users/saurabh.sonar120-gmail.com/apps/store-with-flutter/distribution_groups/public
 
 ## CI/CD
