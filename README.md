@@ -20,3 +20,10 @@ samples, guidance on mobile development, and a full API reference.
 <img src="https://github.com/SaurabhS120/store_with_flutter/blob/master/screenshots/screenshot-001-home.jpg" width="300"/>
 <img src="https://github.com/SaurabhS120/store_with_flutter/blob/master/screenshots/screenshot-002-my-cart.jpg" width="300"/>
 </p>
+
+## Download app:
+Click on following link to download app from Microsoft App Center <br/>
+https://install.appcenter.ms/users/saurabh.sonar120-gmail.com/apps/store-with-flutter/distribution_groups/public
+
+## CI/CD
+The app build is created by using GitHub action. We are using Microsoft App Center CLI tool to deploy app our app.
