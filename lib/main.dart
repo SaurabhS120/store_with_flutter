@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:store_with_flutter/app_navigator.dart';
 import 'package:store_with_flutter/di/bloc_provider.dart';
 import 'package:store_with_flutter/di/repo_provider.dart';
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: GoogleFonts.permanentMarker().fontFamily,
+      ),
       home: MultiRepositoryProvider(
         providers: repositoryProvider,
         child: MultiRepositoryProvider(

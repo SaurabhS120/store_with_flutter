@@ -10,27 +10,32 @@ class ProductListPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocBuilder<ProductListBloc, ProductListBlocState>(
-        builder: (context, state) {
-          if (state is ProductListBlocLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is ProductListBlocLoaded) {
-            return ColoredBox(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.builder(
-                  itemCount: state.products.length,
-                  itemBuilder: (context, index) {
-                    return ProductItem(product:  state.products[index],);
-                  }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Shopping with flutter',style: TextStyle(color: Colors.black45),),
+      ),
+      body: SafeArea(
+        child: BlocBuilder<ProductListBloc, ProductListBlocState>(
+          builder: (context, state) {
+            if (state is ProductListBlocLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ProductListBlocLoaded) {
+              return ColoredBox(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.builder(
+                    itemCount: state.products.length,
+                    itemBuilder: (context, index) {
+                      return ProductItem(product:  state.products[index],);
+                    }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8),
+                  ),
                 ),
-              ),
-            );
-          }
-          return Container();
-        },
+              );
+            }
+            return Container();
+          },
+        ),
       ),
     );
   }
