@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:store_with_flutter/app_colors.dart';
 import 'package:store_with_flutter/app_navigator.dart';
 import 'package:store_with_flutter/di/bloc_provider.dart';
 import 'package:store_with_flutter/di/repo_provider.dart';
@@ -42,8 +43,17 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-        child: Text('Profile Screen')
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Shopping with flutter',style: TextStyle(color: AppColors.appBarTitleColor),
+        ),
+        backgroundColor: AppColors.appBarColor,
+      ),
+      body: const SafeArea(
+        child: Center(
+          child: Text('Profile Screen'),
+        )
+      ),
     );
   }
 }

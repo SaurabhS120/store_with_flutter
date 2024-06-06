@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_with_flutter/app_colors.dart';
 import 'package:store_with_flutter/features/home/product_list_bloc.dart';
 
 
@@ -12,7 +13,9 @@ class ProductListPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shopping with flutter',style: TextStyle(color: Colors.black45),),
+        title: const Text('Shopping with flutter',style: TextStyle(color: AppColors.appBarTitleColor),
+        ),
+        backgroundColor: AppColors.appBarColor,
       ),
       body: SafeArea(
         child: BlocBuilder<ProductListBloc, ProductListBlocState>(
@@ -68,8 +71,8 @@ class ProductItem extends StatelessWidget {
                 errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
               ),
             )),
-            Text(product.title,textAlign: TextAlign.center,),
-            Text(product.price.toString(),textAlign: TextAlign.center,),
+            Text(product.title,textAlign: TextAlign.center,style: const TextStyle(color: Colors.black54,fontWeight: FontWeight.bold),),
+            Text(product.price.toString(),textAlign: TextAlign.center,style: TextStyle(color: Colors.black38),),
           ],
         ),
       ),

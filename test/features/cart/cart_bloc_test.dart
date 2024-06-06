@@ -235,7 +235,14 @@ void main() {
     });
     testWidgets("Quantity", (WidgetTester tester) async {
       await tester.pumpWidget(page);
-      expect(find.text("Quantity: ${productCartModel.quantity}"), findsOneWidget);
+      final findQuantityTitle = find.text("Quantity: ");
+      final findQuantity = find.text(productCartModel.quantity.toString());
+      final findQuantityRow = find.byKey(const Key('Quantity Row'));
+      expect(findQuantityTitle, findsOneWidget);
+      expect(findQuantity, findsOneWidget);
+      expect(findQuantityRow, findsOneWidget);
+      expect(find.descendant(of: findQuantityRow, matching: findQuantityTitle), findsOneWidget);
+      expect(find.descendant(of: findQuantityRow, matching: findQuantity), findsOneWidget);
     });
     testWidgets("Image", (WidgetTester tester) async {
       await tester.pumpWidget(page);
