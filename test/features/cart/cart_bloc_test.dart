@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:data/api_service.dart';
 import 'package:domain/model/cart_model.dart';
 import 'package:domain/model/product_model.dart';
@@ -14,6 +15,7 @@ import 'package:store_with_flutter/di/bloc_provider.dart';
 import 'package:store_with_flutter/di/repo_provider.dart';
 import 'package:store_with_flutter/di/usecase_provider.dart';
 import 'package:store_with_flutter/features/cart/cart_bloc.dart';
+import 'package:store_with_flutter/features/cart/cart_page.dart';
 
 @GenerateNiceMocks([MockSpec<GetCartUseCase>(),MockSpec<GetProductByIdUsecase>()])
 import 'cart_bloc_test.mocks.dart';
@@ -211,5 +213,68 @@ void main() {
                     productResponse[2]
                   ]),
             ]);
+  }
+  group("Cart product item widget test",(){
+    const ProductModel product = ProductModel(
+        id: 1,
+        title: "test",
+        price: 100,
+        description: 'test desc',
+        category: 'category test',
+        image: 'img url',
+        rating: RatingModel(rate: 1.0, count: 1));
+    const ProductCartModel productCartModel = ProductCartModel(productId: 1, quantity: 3);
+    const Widget page = MaterialApp(
+        home: ProductCartItem(
+          product:product, cartItem: productCartModel,
+        ),
+    );
+    testWidgets("Title", (WidgetTester tester) async {
+      await tester.pumpWidget(page);
+      expect(find.text(product.title), findsOneWidget);
+    });
+    testWidgets("Quantity", (WidgetTester tester) async {
+      await tester.pumpWidget(page);
+      expect(find.text("Quantity: ${productCartModel.quantity}"), findsOneWidget);
+    });
+    testWidgets("Image", (WidgetTester tester) async {
+      await tester.pumpWidget(page);
+      expect(find.byType(CachedNetworkImage), findsWidgets);
+      expect(find.byType(CachedNetworkImage), hasCachedImageWithUrl(product.image));
+    });
+  });
+}
+
+Matcher hasCachedImageWithUrl(String url) {
+  return _HasCachedImageWithUrl(url);
+}
+
+class _HasCachedImageWithUrl extends Matcher {
+  final String url;
+
+  _HasCachedImageWithUrl(this.url);
+
+  @override
+  Description describe(Description description) {
+    return description.add('CachedNetworkImage with url "$url"');
+  }
+
+  @override
+  bool matches(item, Map matchState) {
+    if (item is Finder) {
+      CachedNetworkImage widget = item.evaluate().first.widget as CachedNetworkImage;
+      return widget.imageUrl == url;
+    }
+    return false;
+  }
+
+  @override
+  Description describeMismatch(item, Description mismatchDescription, Map matchState, bool verbose) {
+    if (item is Finder) {
+      CachedNetworkImage widget = item.evaluate().first.widget as CachedNetworkImage;
+      return mismatchDescription.add('had url "${widget.imageUrl}"');
+    } else {
+      return mismatchDescription.add('was not a Finder');
+    }
   }
 }

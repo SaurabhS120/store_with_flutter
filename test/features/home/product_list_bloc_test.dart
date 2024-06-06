@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:data/api_service.dart';
 import 'package:domain/model/product_model.dart';
 import 'package:domain/repo/products_repo.dart';
@@ -12,6 +13,7 @@ import 'package:store_with_flutter/di/bloc_provider.dart';
 import 'package:store_with_flutter/di/repo_provider.dart';
 import 'package:store_with_flutter/di/usecase_provider.dart';
 import 'package:store_with_flutter/features/home/product_list_bloc.dart';
+import 'package:store_with_flutter/features/home/product_list_page.dart';
 
 @GenerateNiceMocks([MockSpec<GetProductsUsecase>()])
 import 'product_list_bloc_test.mocks.dart';
@@ -114,4 +116,66 @@ void main(){
                   rating: RatingModel(rate: 1.0, count: 1))
             ])
           ]);
+  group("Product widget test",(){
+    const ProductModel product = ProductModel(
+        id: 1,
+        title: "test",
+        price: 100,
+        description: 'test desc',
+        category: 'category test',
+        image: 'img url',
+        rating: RatingModel(rate: 1.0, count: 1));
+    const widget = MaterialApp(
+      home: ProductItem(product: product),
+    );
+    testWidgets("title test", (WidgetTester tester) async {
+      await tester.pumpWidget(widget);
+      expect(find.byType(ProductItem), findsOneWidget);
+      expect(find.text(product.title), findsOneWidget);
+    });
+    testWidgets("Price test", (WidgetTester tester) async {
+      await tester.pumpWidget(widget);
+      expect(find.byType(ProductItem), findsOneWidget);
+      expect(find.text(product.price.toString()), findsOneWidget);
+    });
+    testWidgets("Image test", (WidgetTester tester) async {
+      await tester.pumpWidget(widget);
+      expect(find.byType(CachedNetworkImage), findsOneWidget);
+      expect(find.byWidgetPredicate((widget) => widget is CachedNetworkImage && widget.imageUrl == product.image), findsOneWidget);
+      expect(find.byType(CachedNetworkImage), hasCachedImageWithUrl(product.image));
+    });
+  });
+}
+Matcher hasCachedImageWithUrl(String url) {
+  return _HasCachedImageWithUrl(url);
+}
+
+class _HasCachedImageWithUrl extends Matcher {
+  final String url;
+
+  _HasCachedImageWithUrl(this.url);
+
+  @override
+  Description describe(Description description) {
+    return description.add('CachedNetworkImage with url "$url"');
+  }
+
+  @override
+  bool matches(item, Map matchState) {
+    if (item is Finder) {
+      CachedNetworkImage widget = item.evaluate().first.widget as CachedNetworkImage;
+      return widget.imageUrl == url;
+    }
+    return false;
+  }
+
+  @override
+  Description describeMismatch(item, Description mismatchDescription, Map matchState, bool verbose) {
+    if (item is Finder) {
+      CachedNetworkImage widget = item.evaluate().first.widget as CachedNetworkImage;
+      return mismatchDescription.add('had url "${widget.imageUrl}"');
+    } else {
+      return mismatchDescription.add('was not a Finder');
+    }
+  }
 }

@@ -23,25 +23,7 @@ class CartScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final ProductCartModel cartItem = state.cartItems.products[index];
                 final ProductModel? product = state.products.length>index?state.products[index]:null;
-                return Row(
-                  children: [
-                    if(product!=null) Padding(padding: const EdgeInsets.all(8),
-                    child: CachedNetworkImage(
-                      imageUrl:product.image,width: 100,
-                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-                    )),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if(product!=null) Text("Product: ${product.title}"),
-                          Text("Quantity: ${cartItem.quantity}"),
-                        ],
-                      ),
-                    )
-                  ],
-                );
+                return ProductCartItem(product: product, cartItem: cartItem);
               },
             ),
           );
@@ -49,6 +31,40 @@ class CartScreen extends StatelessWidget {
           return const Center(child: Text('Failed to load cart'));
         }
       },
+    );
+  }
+}
+
+class ProductCartItem extends StatelessWidget {
+  const ProductCartItem({
+    super.key,
+    required this.product,
+    required this.cartItem,
+  });
+
+  final ProductModel? product;
+  final ProductCartModel cartItem;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        if(product!=null) Padding(padding: const EdgeInsets.all(8),
+        child: CachedNetworkImage(
+          imageUrl:product?.image??'',width: 100,
+          placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+          errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+        )),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if(product!=null) Text(product?.title??''),
+              Text("Quantity: ${cartItem.quantity}"),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
