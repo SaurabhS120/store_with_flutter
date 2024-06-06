@@ -31,7 +31,7 @@ class ProductListPage extends StatelessWidget{
                     itemCount: state.products.length,
                     itemBuilder: (context, index) {
                       return ProductItem(product:  state.products[index],);
-                    }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8),
+                    }, gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 200, crossAxisSpacing: 8, mainAxisSpacing: 8),
                   ),
                 ),
               );
