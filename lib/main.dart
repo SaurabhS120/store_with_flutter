@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: AppColors.bottomNavBarSelectedColor,
+        ),
         fontFamily: GoogleFonts.permanentMarker().fontFamily,
       ),
       home: MultiRepositoryProvider(

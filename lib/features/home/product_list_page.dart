@@ -57,7 +57,7 @@ class ProductItem extends StatelessWidget {
       aspectRatio: 1,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFE5F2FF),
+          color: const Color(0xFFFFE1DE),
           borderRadius: BorderRadius.circular(16),
         ),
         padding: const EdgeInsets.all(8),
