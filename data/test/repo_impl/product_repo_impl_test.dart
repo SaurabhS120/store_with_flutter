@@ -57,7 +57,7 @@ void main(){
         image: "image",
         rating: RatingEntity(rate: 1.0, count: 1),
       ));
-      final result = await apiService.getProducts();
+      final result = await apiService.getProductsById(1);
       expect(result, const ProductEntity(
         id: 1,
         title: "title",
