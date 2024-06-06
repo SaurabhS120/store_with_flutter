@@ -6,6 +6,7 @@ This is a dummy e-commerce app made with a fake store API.
 - This is an e-commerce app which is pointing to fake store apo.
 - We are using Flutter bloc for state management.
 - Flutter test and mockito packages are used to write unit and widget tests for our app. These test cases will ensure the components of our app.
+- With use of GridView app becomes responsive so it will show products properly on Mobile, Tab and website.
 
 ## Screenshots
 <p>
